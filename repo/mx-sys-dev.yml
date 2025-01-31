@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    consul:
+      discovery:
+        register: true
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}-${server.port}-${spring.cloud.client.ip-address}
+        heartbeat:
+          enabled: true
+      host: localhost
+      port: 8500
+    openfeign:
+      httpclient:
+        connection-timeout: 2000
+        ok-http:
+          read-timeout: 10s
+      circuitbreaker:
+        enabled: true
+    circuitbreaker:
+      resilience4j:
+        enabled: true
+        alphanumeric-ids:
+          enabled: true
+  main:
+    web-application-type: reactive
+server:
+  port: 8081
+logging:
+  level:
+    root: info
+    org.springframework.web: debug
+    cn.chenxinjie: debug
