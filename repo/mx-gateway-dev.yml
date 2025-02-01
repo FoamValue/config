@@ -42,3 +42,5 @@ spring:
     web-application-type: reactive
 server:
   port: 8080
+logging:
+  config: classpath:logback-dev.xml
